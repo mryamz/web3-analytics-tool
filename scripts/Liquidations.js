@@ -1,7 +1,7 @@
 require('dotenv').config()
 const { parseUnits } = require('ethers/lib/utils');
 const Web3 = require('web3');
-const web3 = new Web3(new Web3.providers.WebsocketProvider(process.env.ETH_MAINNET_1));
+const web3 = new Web3(process.env.HTTP_ETH_MAINNET_1);
 const { getEventEmissions, writeReserveDataToCSV, getMarketsByAddress, writeLiquidationDatatoCSV } = require("./Utils")
 
 const printCompoundLiquidationData = async (market) => {
