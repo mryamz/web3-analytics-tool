@@ -1,6 +1,6 @@
 require('dotenv').config()
 const Web3 = require('web3');
-const web3 = new Web3(process.env.HTTP_ETH_MAINNET_1);
+const web3 = new Web3(process.env.HTTP_ETH_MAINNET_2);
 
 const market = (symbol, path, address, decimals, underlyingDecimals) => {
 

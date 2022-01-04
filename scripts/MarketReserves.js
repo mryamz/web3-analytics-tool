@@ -1,7 +1,7 @@
 require('dotenv').config()
 const { parseUnits } = require('ethers/lib/utils');
 const Web3 = require('web3');
-const web3 = new Web3(new Web3.providers.WebsocketProvider(process.env.WS_ETH_MAINNET_1));
+const web3 = new Web3(new Web3.providers.WebsocketProvider(process.env.WS_ETH_MAINNET_2));
 const { getEventEmissions, writeReserveDataToCSV } = require("./Utils")
 
 
