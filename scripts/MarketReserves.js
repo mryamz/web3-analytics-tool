@@ -13,6 +13,7 @@ const printCompoundReserveData = async (markets) => {
                 const blockNumber = event.blockNumber;
 
                 console.log("----------\nBlockNumber: %s", blockNumber)
+                console.log("Market: %s", market.symbol)
                 console.log("Args: %s", values)
             }
 
