@@ -8,5 +8,5 @@ const { printCompoundReserveData } = require("./MarketReserves");;
 // main driver
 (async () => {
 
-    await printCompoundLiquidationData(cDAI)
+    await printCompoundLiquidationData(cUSDT)
 })()
