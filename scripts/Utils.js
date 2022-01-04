@@ -1,5 +1,16 @@
 const { COMPOUND_MARKETS } = require("./Config")
+const fs = require('fs')
 
+const writeReserveDataToCSV = (symbol, totalReduced, currentReserves, totalReservesAccumulated) => {
+
+    const line = `${symbol}, ${totalReduced}, ${currentReserves} ${totalReservesAccumulated}\n`
+    console.log(line)
+    fs.writeFile(`./csvData/reserveData.csv`, line, { flag: 'a+' }, err => {
+        if (err) {
+            console.log(err)
+        }
+    })
+}
 
 const getMarketsByAddress = (address) => {
     for (const e of COMPOUND_MARKETS) {
@@ -43,4 +54,5 @@ const getEventEmissions = async (contract, eventName, batch, newerBlock, olderBl
 module.exports = {
     getMarketsByAddress,
     getEventEmissions,
+    writeReserveDataToCSV
 }
