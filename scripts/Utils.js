@@ -2,8 +2,8 @@ const { COMPOUND_MARKETS } = require("./Config")
 
 
 const getMarketsByAddress = (address) => {
-    for(const e of COMPOUND_MARKETS) {
-        if(e.contract.options.address.toLowerCase() === address.toLowerCase()) {
+    for (const e of COMPOUND_MARKETS) {
+        if (e.contract.options.address.toLowerCase() === address.toLowerCase()) {
             return e
         }
     }
@@ -11,10 +11,11 @@ const getMarketsByAddress = (address) => {
     return -1
 }
 
-const getEventEmissions = async (contract, eventName, batch, newerBlock, olderBlock, task) => {
+const getEventEmissions = async (contract, eventName, batch, newerBlock, olderBlock, task, logging = false) => {
     const deltaBlock = newerBlock - olderBlock
     const chunk = parseInt(deltaBlock / batch)
-    console.log("chunk_size=%s", chunk)
+    if (logging)
+        console.log("chunk_size=%s", chunk)
 
     for (var i = 1; i < batch + 1; i++) {
         const start = ((chunk * (i - 1)) + olderBlock) + 1
@@ -30,7 +31,8 @@ const getEventEmissions = async (contract, eventName, batch, newerBlock, olderBl
                 if (err)
                     console.log("Problem in getEventEmissions: %s", err)
 
-                console.log("Found %s events", events.length)
+                if (logging)
+                    console.log("Found %s %s events in %s", events.length, eventName, contract.options.address)
 
                 await task(events)
             }
