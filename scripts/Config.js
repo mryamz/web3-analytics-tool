@@ -2,7 +2,17 @@ require('dotenv').config()
 const Web3 = require('web3');
 const web3 = new Web3(new Web3.providers.WebsocketProvider(process.env.ETH_MAINNET_1));
 
-const cAAVE = market("cAAVE", '../web3/ethereum/mainnet/abi/compoundcAAVE.json', '0xe65cdb6479bac1e22340e4e755fae7e509ecd06c', 8, 18)
+const market = (symbol, path, address, decimals, underlyingDecimals) => {
+
+    return {
+        symbol: symbol,
+        contract: new web3.eth.Contract(require(path), address),
+        decimals: decimals,
+        underlyingDecimals: underlyingDecimals
+    }
+}
+
+const cAAVE = market("cAAVE", '../web3/ethereum/mainnet/abi/compound/cAAVE.json', '0xe65cdb6479bac1e22340e4e755fae7e509ecd06c', 8, 18)
 const cBAT = market("cBAT", '../web3/ethereum/mainnet/abi/compound/cBAT.json', '0x6c8c6b02e7b2be14d4fa6022dfd6d75921d90e4e', 8, 18)
 const cCOMP = market("cCOMP", '../web3/ethereum/mainnet/abi/compound/cCOMP.json', '0x70e36f6bf80a52b3b46b3af8e106cc0ed743e8e4', 8, 18)
 const cDAI = market("cDAI", '../web3/ethereum/mainnet/abi/compound/cDAI.json', '0x5d3a536e4d6dbd6114cc1ead35777bab948e3643', 8, 18)
@@ -43,17 +53,6 @@ const COMPOUND_MARKETS = [
     cYFI,
     cZRX,
 ]
-
-const market = (symbol, path, address, decimals, underlyingDecimals) = {
-
-    return: {
-        symbol: symbol,
-        contract: new web3.eth.contract(require(path), address),
-        decimals: decimals,
-        underlyingDecimals: underlyingDecimals
-    }
-}
-
 
 module.exports = {
     cAAVE,

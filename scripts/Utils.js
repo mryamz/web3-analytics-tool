@@ -13,7 +13,7 @@ const getMarketsByAddress = (address) => {
 
 const getEventEmissions = async (contract, eventName, batch, newerBlock, olderBlock, task) => {
     const deltaBlock = newerBlock - olderBlock
-    const chunk = deltaBlock / batch
+    const chunk = parseInt(deltaBlock / batch)
     console.log("chunk_size=%s", chunk)
 
     for (var i = 1; i < batch + 1; i++) {
