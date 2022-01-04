@@ -12,6 +12,16 @@ const writeReserveDataToCSV = (symbol, totalReduced, currentReserves, totalReser
     })
 }
 
+const writeLiquidationDatatoCSV = (txHash, timeOfLiquidation, cTokenCollateralSymbol, seizeTokens, borrowedTokenSymbol, repayAmount) => {
+    const line = `${txHash}, ${timeOfLiquidation}, ${cTokenCollateralSymbol}, ${seizeTokens}, ${borrowedTokenSymbol} ${repayAmount}\n`
+    console.log(line)
+    fs.writeFile(`./csvData/borrow-${borrowedTokenSymbol}.csv`, line, err => {
+        if (err) {
+            console.log(err)
+        }
+    })
+}
+
 const getMarketsByAddress = (address) => {
     for (const e of COMPOUND_MARKETS) {
         if (e.contract.options.address.toLowerCase() === address.toLowerCase()) {
@@ -54,5 +64,6 @@ const getEventEmissions = async (contract, eventName, batch, newerBlock, olderBl
 module.exports = {
     getMarketsByAddress,
     getEventEmissions,
-    writeReserveDataToCSV
+    writeReserveDataToCSV,
+    writeLiquidationDatatoCSV
 }
