@@ -11,7 +11,7 @@ const printCompoundLiquidationData = async (market) => {
         for(const event of events) {
             const values = event.returnValues;
             const blockNumber = event.blockNumber;
-            const timestamp = web3.eth.getBlock(blockNumber).timestamp
+            const timestamp = (await web3.eth.getBlock(blockNumber)).timestamp
             const txhash = event.transactionHash;
 
             const repayAmountRaw = values.repayAmount;

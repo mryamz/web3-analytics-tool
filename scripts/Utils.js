@@ -14,8 +14,7 @@ const writeReserveDataToCSV = (symbol, totalReduced, currentReserves, totalReser
 
 const writeLiquidationDatatoCSV = (txHash, timeOfLiquidation, cTokenCollateralSymbol, seizeTokens, borrowedTokenSymbol, repayAmount) => {
     const line = `${txHash}, ${timeOfLiquidation}, ${cTokenCollateralSymbol}, ${seizeTokens}, ${borrowedTokenSymbol} ${repayAmount}\n`
-    console.log(line)
-    fs.writeFile(`./csvData/borrow-${borrowedTokenSymbol}.csv`, line, err => {
+    fs.writeFile(`./csvData/borrow-${borrowedTokenSymbol}.csv`, line, { flag: 'a+' }, err => {
         if (err) {
             console.log(err)
         }
