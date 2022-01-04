@@ -1,5 +1,5 @@
 
-const { cUSDT, cUSDC, COMPOUND_MARKETS } = require("./Config");
+const { cUSDT, cUSDC, COMPOUND_MARKETS, cDAI } = require("./Config");
 const { printCompoundLiquidationData } = require("./Liquidations");
 
 const { printCompoundReserveData } = require("./MarketReserves");;
@@ -8,5 +8,5 @@ const { printCompoundReserveData } = require("./MarketReserves");;
 // main driver
 (async () => {
 
-    await printCompoundLiquidationData(cUSDC)
+    await printCompoundLiquidationData(cDAI)
 })()
